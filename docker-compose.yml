@@ -1,0 +1,21 @@
+services:
+  app:
+    # O Docker vai buscar um Dockerfile no diretório atual
+    build: .
+    # Use o nome do seu repositório no Docker Hub
+    image: edupanage46/cadastro-cliente:latest
+    # Nome do container
+    container_name: cadastro_cliente_php
+    # Mapeia a porta 8080 do seu host para a porta 80 do container
+    ports:
+      - "8080:80"
+    # Montagem de volume para persistência dos dados (SQLite)
+    volumes:
+      - .:/var/www/html
+      - sqlite_data:/var/www/html/data/
+    # Reinicia o container se ele falhar
+    restart: always
+
+# Definição dos volumes
+volumes:
+  sqlite_data:
